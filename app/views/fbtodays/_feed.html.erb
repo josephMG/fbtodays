@@ -1,0 +1,29 @@
+<% feeds.each do |feed|%>
+    <div class="large-4 columns type_<%=feed['type']%>">
+        <div class="row">
+            <div class="small-5 columns user_name">
+                <%= link_to truncate(feed["from"]["name"],length:13),"http://www.facebook.com/profile.php?id="+feed["from"]["id"], :target => "_blank" %>
+            </div>
+            <div class="small-7 columns create_time">
+                <span class="left">
+                    <%= link_to "link","https://graph.facebook.com/"+feed["id"]%>
+                </span>
+                <span class="right text-right">
+                    <%= feed["created_time"].to_time.strftime("%m/%d/%Y %H:%M:%S")%>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-4 columns user_photo">
+                <%= image_tag "http://graph.facebook.com/"+feed["from"]["id"]+"/picture?type=square&width=100&height=100" %>
+            </div>
+            <div class="small-8 columns message">
+                <%= (feed["story"].nil?) ? truncate(feed["message"],length: 50): truncate(feed["story"],length: 50)%>
+                <div>
+                    <%= (feed["application"].present? && feed["application"]["name"]=="Og_likes") || (feed["actions"].present? && feed["actions"].length==1)%>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end%>
+

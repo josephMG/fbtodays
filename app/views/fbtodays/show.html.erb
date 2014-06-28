@@ -1,0 +1,20 @@
+<% @feeds.each do |feed|%>
+  <div class="large-6 columns type_<%=feed.type%>">
+    <div class="row collapse">
+      <div class="small-3 columns user">
+        <div class="user_profile">
+          <%= image_tag "#{ENV['fb_graph']}/#{feed.from.id}/#{ENV['profile_picture_arg']}", {:alt=>feed.from.name, :class=>"user_photo round"} %>
+          <%= link_to feed.from.name,"#{ENV['fb_domain']}/#{feed.from.id}", {:target => "_blank", :class=>"user_name text-center"} %>
+        </div>
+      </div>
+      <div class="small-9 columns message_detail">
+        <%#= render :partial => feed.type, :locals => {:feed => feed} %>
+      </div>
+    </div>
+  </div>
+<% end%>
+
+<%#= feed.type%>
+<%#= feed.created_time.to_formatted_s(:db) %></br>
+<%= hidden_field_tag 'Next', url_for(:page => @param),{:id => "next_page"} %>
+<%#= hidden_field_tag 'Next', "",{:id => "next_page"} %>

@@ -1,0 +1,11 @@
+<div class="small-8 columns message">
+  <div class="row">
+    <div class="large-12 column text-justify">
+      <%= (feed.story.nil?) ? autolink_truncate(feed.message) : 
+        autolink_truncate(feed.story) %>
+    </div>
+    <div class="large-12 column">
+      <%=link_to image_tag(feed.picture, :class => "message_img") %>
+    </div>
+  </div>
+</div>

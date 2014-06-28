@@ -1,0 +1,38 @@
+<div class="fixed contain-to-grid">
+  <nav class="top-bar" data-topbar>
+    <section class="top-bar-section left">
+      <ul>
+        <li class="name">
+          <%= image_tag "#{@me.picture.url}" %>
+          <%#= image_tag "#{@me.picture("width"=>100,"height"=>100).url}" %>
+        </li>
+        <li>
+          <%= link_to @me.name, @me.link, :target => "_blank"%>
+        </li>
+      </ul>
+    </section>
+    <ul class="title-area right" style="z-index:2">
+      <li class="has-form">
+        <div class="row collapse">
+          <div>
+            <input type="text" placeholder="Find Stuff">
+            <%= image_tag "loading2.gif" %>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <section class="top-bar-section top-bar-center">
+      <ul>
+        <li><a href="#">Facebook Today!</a></li>
+      </ul>
+    </section>
+  </nav>
+</div>
+<div id="feeds" class="row">
+  <%# @home.each do |feed|%>
+    <p><%#= feed.raw_attributes %></p>
+  <%# end %>
+  <%#= render partial:"feed",locals:{feeds: @feeds} %>
+</div>
+

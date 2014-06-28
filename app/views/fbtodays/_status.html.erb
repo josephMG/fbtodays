@@ -1,0 +1,14 @@
+<div class="small-9 columns message">
+  <div class="row">
+    <div class="large-12 column text-justify">
+    </div>
+    <div class="large-12 column">
+    </div>
+  </div>
+</div>
+      <%#= (feed.message.nil?) ? autolink_truncate(feed.story) 
+                              : autolink_truncate(feed.message) %>
+      <% if feed.status_type.nil? %>
+        <%#= (feed.link.present?)? link_to(t("show.see_origin"),feed.link,{:target => "_blank"}) : link_to(t("show.see_origin"),"#{ENV['fb_domain']}/#{feed.id}",{:target => "_blank"}) %>
+      <% end %>
+      <%#=link_to image_tag(feed.picture, :class => "message_img") %>
