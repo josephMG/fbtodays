@@ -6,6 +6,7 @@ currentPage = 1
 intervalID = -1000
 flag=true
 $ ->
+  $('.title-area input').datepicker('setDate',new Date())
   $('.title-area input').datepicker({
     format: "yyyy/mm/dd",
     todayBtn: "linked",
@@ -31,7 +32,6 @@ $ ->
       success: appendData
     }
   )
-  $('.title-area input').datepicker('setDate',new Date())
   $('.title-area input').hide()
   $('.title-area img').show()
   $.ajax "/show",
@@ -102,5 +102,5 @@ waterfall = (img_len_old,img_len_new) ->
   len=img_len_new-img_len_old
   $("img").load () ->
     $('#feeds').masonry({
-      itemSelector: '.large-4'
+      itemSelector: '#feeds>div.large-6'
     })

@@ -27,7 +27,7 @@ class FbtodaysController < ApplicationController
     me=get_me
     @feeds=me.home
 #    mylog.info @feeds.methods
-    @feeds.select! {|feed| feed.type=="status"}
+#    @feeds.select! {|feed| feed.type=="status"}
     @feeds.each do |feed|
       if feed.status_type.nil?
         origin=get_origin(feed.id)

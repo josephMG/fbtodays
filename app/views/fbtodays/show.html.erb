@@ -7,14 +7,24 @@
           <%= link_to feed.from.name,"#{ENV['fb_domain']}/#{feed.from.id}", {:target => "_blank", :class=>"user_name text-center"} %>
         </div>
       </div>
-      <div class="small-9 columns message_detail">
-        <%#= render :partial => feed.type, :locals => {:feed => feed} %>
+      <div class="small-9 columns message">
+        <div class="message_body">
+          <div class="text-justify message_info clearfix">
+            <span class="left">
+              <%= feed.type%>
+            </span>
+            <span class="right">
+              <%= feed.created_time.to_formatted_s(:db) %></br>
+            </span>
+          </div>
+          <div class="message_block">
+            <%= render :partial => feed.type, :locals => {:feed => feed} %>
+        </div>
+      </div>
       </div>
     </div>
   </div>
 <% end%>
 
-<%#= feed.type%>
-<%#= feed.created_time.to_formatted_s(:db) %></br>
 <%= hidden_field_tag 'Next', url_for(:page => @param),{:id => "next_page"} %>
 <%#= hidden_field_tag 'Next', "",{:id => "next_page"} %>

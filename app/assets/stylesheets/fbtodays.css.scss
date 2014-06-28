@@ -1,7 +1,7 @@
 // Place all the styles related to the fbtodays controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "foundation/components/grid";
+@import "foundation/components/global";
 $type-status-bg: #6afbed;
 $type-media-bg: #6afb78;
 $type-link-bg: #fbd66a;
@@ -10,7 +10,7 @@ $type-default-bg: #A2A2A2;
 %media-bg {
     background: $type-media-bg !important;
 }
-%type_all{
+%type_all {
   z-index:1;
 }
 /****** layout (index's) css ******/
@@ -100,29 +100,52 @@ $type-default-bg: #A2A2A2;
 .type_status, .type_video, .type_photo, .type_swf, .type_link{
   @extend %type_all;
   background-color: white;
-  padding-bottom: 10px;
-  padding-top: 10px;
 }
-.type_status:after {
-  background: $type-status-bg !important;
+.type_status{
+  .message_body {
+    background: $type-status-bg !important;
+  }
+  .message_body:after {
+    border-color: transparent $type_status-bg;
+  }
 }
-.type_video:after {
-  @extend %media-bg
+.type_video {
+  .message_body {
+    @extend %media-bg;
+  }
+  .message_body:after {
+    border-color: transparent $type-media-bg;
+  }
 }
-.type_photo:after {
-  @extend %media-bg
+.type_photo {
+  .message_body {
+    @extend %media-bg;
+  }
+  .message_body:after {
+    border-color: transparent $type-media-bg;
+  }
 }
-.type_swf:after {
-  @extend %media-bg
+.type_swf {
+  .message_body {
+    @extend %media-bg;
+  }
+  .message_body:after {
+    border-color: transparent $type-media-bg;
+  }
 }
-.type_link:after {
-  background: $type-link-bg !important;
+.type_link {
+  .message_body {
+    background: $type-link-bg !important;
+  }
+  .message_body:after {
+    border-color: transparent $type-link-bg;
+  }
 }
 .user {
   .user_profile{
     position: relative;
     img.user_photo{
-      @include border-radius(25px);
+      @include radius(25px);
       display: block;
       width:100%;
     }
@@ -132,6 +155,40 @@ $type-default-bg: #A2A2A2;
       background-color: black;
       color: white;
       width:100%;
+    }
+  }
+}
+.message {
+  .message_body {
+    position: relative;
+    padding: 0px 15px 15px 15px;
+    margin: 0em 0 3em;
+    color: #000;
+    border-radius: 10px;
+    background: linear-gradient(top, #f9d835, #f3961c);
+    /***** bubble left *****/
+    margin-left: 30px;
+  }
+  .message_body:after {
+    content: "";
+    top: 16px;
+    left: -25px;
+    bottom: auto;
+    border-width: 10px 25px 10px 0;
+    position: absolute;
+    border-style: solid;
+    display: block;
+    width: 0;
+  }
+  .message_body {
+    .message_info {
+      padding: 5px 0px 15px 0px;
+    }
+    .message_block {
+      .message_content {
+      }
+      .message_more {
+      }
     }
   }
 }
