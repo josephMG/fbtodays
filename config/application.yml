@@ -1,0 +1,17 @@
+defaults: &defaults
+  fb_app: '657666410983842'
+  fb_secret: 'ee4987be6884da44068251cc69477630'
+  fb_domain: 'http://www.facebook.com'
+  fb_graph: 'http://graph.facebook.com'
+  profile_picture_arg: 'picture?type=square&width=100&height=100'
+
+development:
+  <<: *defaults
+#  site_url : 'http://192.168.0.101:3000/'
+  site_url : 'http://192.168.230.130:3000/'
+#  site_url: 'http://114.35.120.115:10524/'
+#  site_url: 'http://localhost:3000/'
+production:
+  <<: *defaults
+#  site_url : 'http://192.168.0.101:3000/'
+#  site_url: 'http://railsfbtoday.herokuapp.com/'

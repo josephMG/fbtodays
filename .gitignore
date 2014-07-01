@@ -10,7 +10,6 @@
 # Ignore the default SQLite database.
 
 # Ignore all logfiles and tempfiles.
-/config/application.yml
 *.keep
 *.rbc
 capybara-*.html
