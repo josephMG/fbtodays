@@ -6,24 +6,20 @@ currentPage = 1
 intervalID = -1000
 flag=true
 $ ->
-  $('.title-area input').datepicker('setDate',new Date())
   $('.title-area input').datepicker({
     format: "yyyy/mm/dd",
     todayBtn: "linked",
     language: "zh-TW",
     todayHighlight: true,
     autoclose: true,
-    endDate: new Date(),
+    endDate: new Date()
   }).on('changeDate', (e) ->
-    return false if e.dates.length==0
+    return true if e.dates.length==0
     since=new Date(e.date)
     from=since.getTime()/1000
     to=from+60*60*24
     $('.title-area input').hide()
     $('.title-area img').show()
-    #page='page[until]='+to+'&page[since]='+from
-    console.log {util:to, since:from}
-    flag=false
     $("#feeds").html('')
     $.ajax {
       url:"/show",
@@ -32,6 +28,7 @@ $ ->
       success: appendData
     }
   )
+  $('.title-area input').datepicker('setDate',new Date())
   $('.title-area input').hide()
   $('.title-area img').show()
   $.ajax "/show",
@@ -40,17 +37,16 @@ $ ->
       $("#feeds").append $(data).not "#next_page"
       $("#feeds").after $(data).filter "#next_page"
       img_len_new=$("img").length
-#      intervalID = setInterval(checkScroll, 250)
+      intervalID = setInterval(checkScroll, 250)
       waterfall(img_len_old,img_len_new)
       $('.title-area input').show()
       $('.title-area img').hide()
-      flag=false
 
 $(window).resize ()->
   if $(window).width() < 641
     $(".top-bar-center a").text("FB today!")
   else
-    $(".top-bar-center a").text("Facebook today!")
+    $(".top-bar-center a").text("Facebook Today!")
 
 pageHeight = () ->
   Math.max(document.body.scrollHeight, document.body.offsetHeight)
@@ -62,7 +58,6 @@ nearBottomOfPage = ()  ->
   scrollDistanceFromBottom() < 50
 
 checkScroll = () ->
-  return false
   if nearBottomOfPage() && intervalID!=-1000 && $("#progress").is(":hidden")
     $("#progress").show()
   return if flag==false

@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "foundation/components/global";
+@import "compass";
 $type-status-bg: #6afbed;
 $type-media-bg: #6afb78;
 $type-link-bg: #fbd66a;
@@ -18,8 +19,12 @@ $type-default-bg: #A2A2A2;
     float:left !important;
     font-size:10px;
     background: $type-default-bg;
+    margin-bottom:5px;
+    margin-top:5px;
+    padding:0px 5px;
     .row{
         padding:3px;
+        @include box-shadow(red 2px 2px 10px);
         img{
             width:auto;
             max-width:none;

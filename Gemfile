@@ -8,6 +8,7 @@ gem 'rails', '4.1.1'
 #gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem "compass-rails"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -42,7 +43,6 @@ group :production do
 end
 gem 'sqlite3', :group => [:development, :test]
 gem 'foundation-rails'
-#gem "compass-rails", "~> 2.0.alpha.0"
 gem "koala", "~> 1.9.0"
 gem "fb_graph2"
 gem 'masonry-rails'

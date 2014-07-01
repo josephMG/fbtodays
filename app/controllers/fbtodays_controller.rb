@@ -11,7 +11,9 @@ class FbtodaysController < ApplicationController
 
   def callback
     @client=client
+    render "fbtodays/please_login" and return if params[:code].nil?
     @client.authorization_code = params[:code]
+    puts @client.inspect
     session[:access_token] = @client.access_token! :client_auth_body # => Rack::OAuth2::AccessToken
     puts "===========\n#{session[:access_token]}\n====================="
     redirect_to root_path and return
@@ -20,12 +22,12 @@ class FbtodaysController < ApplicationController
     if session[:access_token].nil?
       redirect_to "/login" and return
     end
-    now=DateTime.now
-    midnight=DateTime.new(now.year, now.month, now.day, 0, 0, 0, "+08:00")
-    until_time=now.to_time.to_i
-    midnight_time=midnight.to_time.to_i
+    @since_time=params[:since]? params[:since] : Time.now.beginning_of_day.to_i
+    @until_time=params[:until]? params[:until] : Time.now.end_of_day.to_i
+    #puts "======= since: #{since_time}, until: #{until_time} ========"
     me=get_me
-    @feeds=me.home
+    @feeds=me.home ({:limit=>25,:since=>@since_time, :until => @until_time})
+    puts @feeds.inspect
 #    mylog.info @feeds.methods
 #    @feeds.select! {|feed| feed.type=="status"}
     @feeds.each do |feed|
@@ -36,7 +38,9 @@ class FbtodaysController < ApplicationController
       end
       count_info= like_comment_share_count(feed.id)
       feed = add_attr feed,count_info
+      @until_time=feed.created_time.to_i
     end
+    @until_time = @until_time - 1 unless @until_time.class=="String"
     render :layout => false
   end
   def login

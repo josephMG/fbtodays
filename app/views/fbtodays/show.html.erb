@@ -26,5 +26,5 @@
   </div>
 <% end%>
 
-<%= hidden_field_tag 'Next', url_for(:page => @param),{:id => "next_page"} %>
+<%= hidden_field_tag 'Next', "/show?until=#{@until_time}&since=#{@since_time}",{:id => "next_page"} %>
 <%#= hidden_field_tag 'Next', "",{:id => "next_page"} %>
