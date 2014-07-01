@@ -14,4 +14,4 @@ development:
 production:
   <<: *defaults
 #  site_url : 'http://192.168.0.101:3000/'
-#  site_url: 'http://railsfbtoday.herokuapp.com/'
+  site_url: 'http://railsfbtoday.herokuapp.com/'
